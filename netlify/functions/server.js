@@ -1,19 +1,25 @@
 const fs = require('fs')
-const path = require('path')
 
 exports.handler = async function (event, context) {
-    const filePath = path.resolve(__dirname, '../../server.json')
-
     try {
-        const data = JSON.parse(fs.readFileSync(filePath, 'utf8'))
+        const data = JSON.parse(
+            fs.readFileSync('netlify/functions/server.json', 'utf8')
+        )
         return {
             statusCode: 200,
+            headers: {
+                'Access-Control-Allow-Origin': '*', // Permitir acesso de qualquer origem
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
+            },
             body: JSON.stringify(data)
         }
     } catch (error) {
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: 'Erro ao ler o arquivo server.json' })
+            body: JSON.stringify({
+                error: 'Erro ao carregar o arquivo server.json'
+            })
         }
     }
 }

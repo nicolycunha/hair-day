@@ -1,0 +1,6 @@
+[build]
+functions = "netlify/functions" # Diretório das funções serverless
+publish = "dist"                # Diretório dos arquivos estáticos
+
+[functions]
+directory = "netlify/functions" # Diretório de funções
