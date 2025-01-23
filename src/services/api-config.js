@@ -1,3 +1,3 @@
 export const apiConfig = {
-    baseURL: '/.netlify/functions/server'
+    baseURL: 'https://hair-day-api-chi.vercel.app'
 }
